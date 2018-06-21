@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
@@ -24,7 +24,9 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import HelpIcon from '@material-ui/icons/Help';
 import BusinessIcon from '@material-ui/icons/Business';
 import DescriptionIcon from '@material-ui/icons/Description';
+import AppBar from '@material-ui/core/AppBar';
 import CompareIcon from '@material-ui/icons/Compare';
+import {Link} from 'react-router-dom';
 
 
 const drawerWidth = 240;
@@ -33,7 +35,7 @@ const styles = theme => ({
     flexGrow: 1,
   },
   appFrame: {
-    height: 430,
+    height: '100%',
     zIndex: 1,
     overflow: 'hidden',
     position: 'relative',
@@ -122,7 +124,7 @@ class PersistentDrawer extends React.Component {
   };
 
   render() {
-    const { classes, theme } = this.props;
+    const { classes, theme, children } = this.props;
     const { anchor, open } = this.state;
 
     const drawer = (
@@ -140,13 +142,13 @@ class PersistentDrawer extends React.Component {
         </div>
         <Divider />
         <List>
-          <ListItem button>
+          <ListItem button component={Link} to={"/overview"}>
             <ListItemIcon>
               <DescriptionIcon/>
             </ListItemIcon>
             <ListItemText primary="Overview" />
           </ListItem>
-          <ListItem button>
+          <ListItem button component={Link} to={"/analysis"}>
             <ListItemIcon>
               <CompareIcon/>
             </ListItemIcon>
@@ -158,7 +160,7 @@ class PersistentDrawer extends React.Component {
           </ListItemIcon>
           <ListItemText primary="Search" />
         </ListItem>
-        <ListItem button>
+        <ListItem button component={Link} to={"/companies"}>
           <ListItemIcon>
             <BusinessIcon />
           </ListItemIcon>
@@ -221,7 +223,8 @@ class PersistentDrawer extends React.Component {
             })}
           >
             <div className={classes.drawerHeader} />
-
+            <Paper></Paper>
+            <Typography>{children}</Typography>
           </main>
           {after}
         </div>

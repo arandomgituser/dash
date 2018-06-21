@@ -10,7 +10,7 @@ class Companies extends React.Component{
     <Grid container>
       <Grid item sm>
         <Paper>
-          This is apaper
+          This is Companies paper
         </Paper>
       </Grid>
     </Grid>
